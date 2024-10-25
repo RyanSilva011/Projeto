@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrinho de Compras - Lacoste Brasil</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #444;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #007a33;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        section {
+            flex: 2;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e1e1e1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .product {
+            display: flex;
+            align-items: center;
+        }
+
+        .product img {
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 80px;
+            height: 100px;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+        }
+
+        .qty button,
+        .remove {
+            background-color: transparent;
+            border: none;
+            color: #007a33;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+
+        button {
+            background-color: #007a33;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #005d25;
+        }
+
+        .product-list {
+            margin-top: 20px;
+        }
+
+        .product-list div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        .payment-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-section input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .total {
+            font-size: 1.2em;
+            margin-top: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>Carrinho de Compras - Lacoste Brasil</span>
+    </header>
+    <main>
+        <div class="page-title">Seu Carrinho</div>
+        <div class="content">
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th>Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Itens do carrinho serão adicionados aqui -->
+                    </tbody>
+                </table>
+
+                <div class="product-list">
+                    <div>
+                        <span>Camiseta Lacoste</span>
+                        <span>R$ 120</span>
+                        <button onclick="addToCart('Camiseta Lacoste', 120)">Adicionar ao Carrinho</button>
+                    </div>
+                    <div>
+                        <span>Regata Lacoste</span>
+                        <span>R$ 100</span>
+                        <button onclick="addToCart('Regata Lacoste', 100)">Adicionar ao Carrinho</button>
+                    </div>
+                    <!-- Calça removida -->
+                </div>
+
+                <div class="payment-section">
+                    <h2>Pagamento</h2>
+                    <input type="text" placeholder="Nome no Cartão" required />
+                    <input type="text" placeholder="Número do Cartão" required />
+                    <input type="text" placeholder="Data de Validade (MM/AA)" required />
+                    <input type="text" placeholder="Código de Segurança" required />
+                    <div class="total">Total: R$ <span id="total-value">0</span></div>
+                    <button onclick="finalizarCompra()">Finalizar Compra</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        let totalValue = 0;
+
+        function addToCart(name, price) {
+            const cartItems = document.getElementById('cart-items');
+
+            // Criação de uma nova linha na tabela do carrinho
+            const row = document.createElement('tr');
+
+            // Monta as células da nova linha
+            row.innerHTML = `
+                <td>
+                    <div class="product">
+                        <img src="url_da_imagem_lacoste" alt="${name}" />
+                        <div class="info">
+                            <div class="name">${name}</div>
+                            <div class="category">Categoria</div>
+                        </div>
+                    </div>
+                </td>
+                <td>R$ ${price}</td>
+                <td>
+                    <div class="qty">
+                        <button onclick="changeQuantity(-1, this)">-</button>
+                        <span>1</span>
+                        <button onclick="changeQuantity(1, this)">+</button>
+                    </div>
+                </td>
+                <td>R$ ${price}</td>
+                <td>
+                    <button class="remove" onclick="removeItem(this)">×</button>
+                </td>
+            `;
+
+            cartItems.appendChild(row);
+            totalValue += price;
+            updateTotal();
+        }
+
+        function changeQuantity(amount, button) {
+            const qtyElement = button.parentElement.querySelector('span');
+            let currentQty = parseInt(qtyElement.textContent);
+
+            // Atualiza a quantidade se for válido
+            if (currentQty + amount > 0) {
+                currentQty += amount;
+                qtyElement.textContent = currentQty;
+                updateTotal(); // Atualiza o total ao mudar a quantidade
+            }
+        }
+
+        function removeItem(button) {
+            const row = button.closest('tr');
+            const price = parseFloat(row.cells[1].innerText.replace('R$ ', ''));
+            const qty = parseInt(row.cells[2].querySelector('span').textContent);
+            totalValue -= price * qty; // Subtrai o valor do total
+            row.remove();
+            updateTotal();
+        }
+
+        function updateTotal() {
+            document.getElementById('total-value').textContent = totalValue.toFixed(2);
+        }
+
+        function finalizarCompra() {
+            alert('Compra finalizada com sucesso!');
+            // Aqui você pode adicionar a lógica para processar o pagamento
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvH3wzALBvBXl1B6TWm4L8n5cHkZjxqw7opQ&s"/>
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        nav {
+            flex-grow: 1;
+            text-align: right;
+        }
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-list li {
+            display: inline;
+            margin-left: 20px;
+        }
+        .menu-list a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .menu-list a:hover {
+            color: #007bff;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .imagem {
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .imagem:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .imagem img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .preco {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2-cYepfFqUopZQv15zliE0L6ewZDiZhC3p967siD-6ZD0oueJ7oeChcuP6QGeFPfEpCQ&usqp=CAU" alt="Lacoste Logo">
+            <h1 style="display:none;">Lacoste Brasil</h1>
+        </div>
+        <nav>
+            <ul class="menu-list">
+                <li><a href="siteoriginal.html">Home</a></li>
+                <li><a href="site13.html">Grupo Lacoste</a></li>
+                <li><a href="site12.html">Quem Somos?</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="galeria">
+        <div class="imagem">
+            <a href="site8.html">
+            <img src="https://imagesa1.lacoste.com/dw/image/v2/BCWL_PRD/on/demandware.static/-/Sites-master/default/dw6a2aef9a/DH5522_001_20.jpg?imwidth=615&impolicy=pctp" alt="Imagem 1">
+            <div class="preco">R$ 469,00</div></a>
+        </div>
+        
+        <div class="imagem">
+            <a href="site9.html">
+            <img src="https://imagesa1.lacoste.com/dw/image/v2/BCWL_PRD/on/demandware.static/-/Sites-master/default/dw3178b9d3/PH2809_WW4_20.jpg?imwidth=615&impolicy=pctp" alt="Imagem 2">
+            <div class="preco">R$ 749,00</div></a>
+        </div>
+        
+        <div class="imagem">
+            <a href="site10.html">
+            <img src="https://imagesa1.lacoste.com/dw/image/v2/BCWL_PRD/on/demandware.static/-/Sites-master/default/dw0154f829/DH2583_CM9_20.jpg?imwidth=615&impolicy=pctp" alt="Imagem 3">
+            <div class="preco">R$ 649,00</div></a>
+        </div>
+
+        <div class="imagem">
+            <a href="site11.html">
+            <img src="https://imagesa1.lacoste.com/dw/image/v2/BCWL_PRD/on/demandware.static/-/Sites-master/default/dw46d385e5/PH4012_001_20.jpg?imwidth=615&impolicy=pctp" alt="Imagem 4">
+            <div class="preco">R$ 469,00</div></a>
+        </div>
+    </div>
+</body>
+</html>
